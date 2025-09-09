@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import { summarizeNote } from '@/ai/flows/summarize-note';
 import { sha256, storeEntry } from '@/lib/web3';
 import { uploadToIpfs } from '@/lib/ipfs';
 import { useWallet } from '@/providers/WalletProvider';
@@ -34,9 +33,8 @@ export function NoteInput({ onNoteAdded }: NoteInputProps) {
     }
     setIsSummarizing(true);
     try {
-      const result = await summarizeNote({ note });
-      setSummary(result.summary);
-      setTags(result.tags);
+      setSummary("Summary feature disabled.");
+      setTags([]);
     } catch (error) {
       console.error("AI summarization failed:", error);
       toast({ title: "AI Error", description: "Failed to summarize the note.", variant: "destructive" });

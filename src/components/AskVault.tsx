@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useWallet } from '@/providers/WalletProvider';
-import { retrieveNotes } from '@/ai/flows/retrieve-notes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Loader2, Search, Sparkles } from 'lucide-react';
@@ -34,9 +33,7 @@ export function AskVault({ entries }: AskVaultProps) {
         setResults([]);
 
         try {
-            const summaries = entries.map(e => e.summary);
-            const response = await retrieveNotes({ query, summaries });
-            setResults(response.relevantNotes);
+            setResults(["AI search disabled."]);
         } catch (error) {
             console.error("AI retrieval failed:", error);
             toast({ title: "AI Error", description: "Failed to search your notes.", variant: "destructive" });
